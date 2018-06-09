@@ -49,3 +49,14 @@ class TestCell(TestCase):
         # then
         self.assertFalse(cell.state)
 
+    def test_should_keep_alive_when_a_alive_cell_have_2_alive_neighbour(self):
+        # given
+        cell = Cell(True)
+
+        number_of_alive_neighbour = 2
+
+        # when
+        cell.next(number_of_alive_neighbour)
+
+        # then
+        self.assertTrue(cell.state)
