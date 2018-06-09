@@ -18,3 +18,8 @@ class Table:
     def get_state(self):
         return [[cell.state for cell in row] for row in self._cells]
 
+    def num_of_alive_neighbor(self, x, y):
+        neighbors = [self._cells[y - 1][x - 1], self._cells[y][x - 1], self._cells[y + 1][x - 1],
+                     self._cells[y - 1][x], self._cells[y + 1][x],
+                     self._cells[y - 1][x + 1], self._cells[y][x + 1], self._cells[y + 1][x + 1]]
+        return sum(neighbor.state for neighbor in neighbors)

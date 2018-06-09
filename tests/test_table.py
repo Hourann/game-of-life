@@ -38,3 +38,14 @@ class TestTable(TestCase):
 
         with self.assertRaises(ValueError):
             table.set_state(state)
+
+    def test_get_num_of_alive_neighbor_works_correct_if_location_is_not_on_the_border(self):
+        # given
+        table = Table(3,3)
+        state = [[True, False, True], [True, False, True], [True, False, True]]
+        # when
+        table.set_state(state)
+
+        # then
+        self.assertEqual(table.num_of_alive_neighbor(1,1), 6)
+
