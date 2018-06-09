@@ -12,3 +12,10 @@ class TestTable(TestCase):
         # then
         for row in table._cells:
             self.assertTrue(all(cell.state for cell in row))
+
+    def test_get_state_method_works_right_in_all_cells_alive_condition(self):
+        # given
+        table = Table(3, 3)
+
+        # then
+        self.assertEqual(table.get_state(), [[True, True, True], [True, True, True], [True, True, True]])
