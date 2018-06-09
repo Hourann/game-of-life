@@ -13,7 +13,18 @@ class TestTable(TestCase):
         for row in table._cells:
             self.assertTrue(all(cell.state for cell in row))
 
-    def test_get_state_method_works_right_in_all_cells_alive_condition(self):
+    def test_set_state_method_works_correct_if_given_correct_state(self):
+        # given
+        table = Table(3,3)
+        state = [[True, False, True], [True, False, True], [True, False, True]]
+
+        # when
+        table.set_state(state)
+
+        # then
+        self.assertEqual(table.get_state(), state)
+
+    def test_get_state_method_works_correct_in_all_cells_alive_condition(self):
         # given
         table = Table(3, 3)
 
