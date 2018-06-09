@@ -30,3 +30,11 @@ class TestTable(TestCase):
 
         # then
         self.assertEqual(table.get_state(), [[True, True, True], [True, True, True], [True, True, True]])
+
+    def test_if_size_of_input_state_not_suit_size_of_table_then_raise_exception(self):
+        # given
+        table = Table(3, 3)
+        state = [[True]]
+
+        with self.assertRaises(ValueError):
+            table.set_state(state)
