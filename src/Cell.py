@@ -9,3 +9,5 @@ class Cell(object):
             self.state = False
         elif number_of_alive_neighbour == 3:
             self.state = True
+        elif number_of_alive_neighbour == 2:
+            pass
