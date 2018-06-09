@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from src.Cell import Cell
+from src.cell import Cell
 
 
 class TestCell(TestCase):
@@ -60,3 +60,4 @@ class TestCell(TestCase):
 
         # then
         self.assertTrue(cell.state)
+
