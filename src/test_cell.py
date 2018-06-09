@@ -15,7 +15,7 @@ class TestCell(TestCase):
         # then
         self.assertFalse(cell.state)
 
-    def test_should_turn_dead_when_a_cell_have_3_alive_neighbour(self):
+    def test_should_turn_dead_when_a_cell_have_more_than_3_alive_neighbour(self):
         # given
         cell = Cell(True)
         number_of_alive_neighbour = 4
@@ -26,3 +26,14 @@ class TestCell(TestCase):
         # then
         self.assertFalse(cell.state)
 
+
+    def test_should_turn_alive_when_a_cell_have_3_alive_neighbour(self):
+        # given
+        cell = Cell(False)
+        number_of_alive_neighbour = 3
+
+        # when
+        cell.next(number_of_alive_neighbour)
+
+        # then
+        self.assertTrue(cell.state)
