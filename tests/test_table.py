@@ -49,3 +49,16 @@ class TestTable(TestCase):
         # then
         self.assertEqual(table.num_of_alive_neighbor(1,1), 6)
 
+    def test_get_num_of_alive_neighbor_works_correct_if_location_is_on_the_corner(self):
+        # given
+        table = Table(3, 3)
+        state = [[True, False, True], [True, False, True], [True, False, True]]
+
+        # when
+        table.set_state(state)
+
+        # then
+        self.assertEqual(table.num_of_alive_neighbor(0, 0), 1)
+
+
+

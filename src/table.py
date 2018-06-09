@@ -19,7 +19,9 @@ class Table:
         return [[cell.state for cell in row] for row in self._cells]
 
     def num_of_alive_neighbor(self, x, y):
-        neighbors = [self._cells[y - 1][x - 1], self._cells[y][x - 1], self._cells[y + 1][x - 1],
-                     self._cells[y - 1][x], self._cells[y + 1][x],
-                     self._cells[y - 1][x + 1], self._cells[y][x + 1], self._cells[y + 1][x + 1]]
+        x_range = list(range(max(0, x-1), min(x+2, self._width)))
+        y_range = list(range(max(0, y-1), min(y+2, self._height)))
+        neighbors_locations = {(_x, _y) for _x in x_range for _y in y_range} - {(x,y)}
+        neighbors = {self._cells[_y][_x] for _x, _y in neighbors_locations}
+
         return sum(neighbor.state for neighbor in neighbors)
