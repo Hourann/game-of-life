@@ -27,11 +27,12 @@ def draw(window):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 2:
-        fname = sys.argv[1]
-        with open(fname, 'r') as f:
-            lines = f.readlines()
-        init_state = [[c == '*' for c in line.strip()] for line in lines]
-        table = Table(len(lines[0].strip()), len(lines), init_state)
-
+    if len(sys.argv) > 1:
+        farg = list(filter(lambda arg: arg.startswith('--fname='), sys.argv[1:]))
+        fname = farg[0][8:] if farg else None
+        if fname:
+            with open(fname, 'r') as f:
+                lines = f.readlines()
+            init_state = [[c == '*' for c in line.strip()] for line in lines]
+            table = Table(len(lines[0].strip()), len(lines), init_state)
     curses.wrapper(draw)
