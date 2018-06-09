@@ -26,10 +26,14 @@ def draw(window):
         time.sleep(1)
 
 
+def parse_arg(name):
+    prefix = '--{}='.format(name)
+    arg = list(filter(lambda arg: arg.startswith(prefix), sys.argv[1:]))
+    return arg[0][len(prefix):] if arg else None
+
 if __name__ == '__main__':
     if len(sys.argv) > 1:
-        farg = list(filter(lambda arg: arg.startswith('--fname='), sys.argv[1:]))
-        fname = farg[0][8:] if farg else None
+        fname = parse_arg('fname')
         if fname:
             with open(fname, 'r') as f:
                 lines = f.readlines()
