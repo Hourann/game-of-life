@@ -72,3 +72,16 @@ class TestTable(TestCase):
         self.assertEqual(table.num_of_alive_neighbor(0, 1), 2)
 
 
+    def test_table_next_state_correct_in_case_1(self):
+        # given
+        # X O X     X X X
+        # X O X =>  O O O
+        # X O X     X X X
+        table = Table(3,3)
+        state = [[False, True, False],[False, True, False],[False, True, False]]
+        table.set_state(state)
+        # when
+        table.next()
+
+        # then
+        self.assertEqual(table.get_state(), [[False, False, False], [True, True, True], [False, False, False]])

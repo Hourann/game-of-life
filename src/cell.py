@@ -7,3 +7,8 @@ class Cell(object):
             self.state = False
         elif number_of_alive_neighbour == 3:
             self.state = True
+
+    def __repr__(self):
+        return '<Cell: {}>'.format(self.state)
+
+    __str__ = __repr__

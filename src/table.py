@@ -7,6 +7,7 @@ class Table:
         self._height = height
         self._interval = interval
         self._cells = [[Cell(True) for x in range(width)] for y in range(height)]
+        self._time = 0
 
     def set_state(self, state):
         if not isinstance(state, list):
@@ -25,3 +26,16 @@ class Table:
         neighbors = {self._cells[_y][_x] for _x, _y in neighbors_locations}
 
         return sum(neighbor.state for neighbor in neighbors)
+
+    def _get_cell(self, x, y):
+        return self._cells[y][x]
+
+    def next(self):
+        self._time += 1
+        num_of_alive_neighbor_table = [[0] * self._width for _ in range(self._height)]
+        for x in range(self._width):
+            for y in range(self._height):
+                num_of_alive_neighbor_table[y][x] = self.num_of_alive_neighbor(x, y)
+        for x in range(self._width):
+            for y in range(self._height):
+                self._get_cell(x, y).next(num_of_alive_neighbor_table[y][x])
