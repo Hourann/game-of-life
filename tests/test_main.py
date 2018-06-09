@@ -1,9 +1,8 @@
 import unittest
-
-
+from src.run import answer
 class TestMain(unittest.TestCase):
     def test_hello(self):
-        assert True
+        self.assertEqual(answer(), 40)
 
 
 if __name__ == '__main__':
