@@ -85,3 +85,18 @@ class TestTable(TestCase):
 
         # then
         self.assertEqual(table.get_state(), [[False, False, False], [True, True, True], [False, False, False]])
+
+    def test_table_next_state_correct_in_case_2(self):
+        # given
+        # X X X X     X X X X
+        # X O O X =>  X O O X
+        # X O O X     X O O X
+        # X X X X     X X X X
+        table = Table(4, 4)
+        state = [[False, False, False, False],[False, True, True, False],[False, True, True, False],[False, False, False, False]]
+        table.set_state(state)
+        # when
+        table.next()
+
+        # then
+        self.assertEqual(table.get_state(), state)
