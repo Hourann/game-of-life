@@ -1,11 +1,15 @@
-from src.cell import Cell
 from random import random
+
+from src.cell import Cell
+
 
 class Table:
     def __init__(self, width, height, init_state=None):
         self._width = width
         self._height = height
         self._cells = [[Cell(True) for x in range(width)] for y in range(height)]
+        if init_state is not None:
+            self.set_state(init_state)
         self._time = 0
 
     def set_state(self, state):

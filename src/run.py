@@ -1,21 +1,22 @@
 # coding: utf-8
+import sys
 import time
+
 import curses
+
 from src.table import Table
+
 ALIVE_CHAR = '*'
 DEAD_CHAR = ' '
-STATE1 = [[False, True, False], [False, True, False], [False, True, False]]
-table = Table(10, 80)
-table.generate_random_state()
-# table.set_state(STATE1)
-
+table = Table(80, 10)
+table.generate_random_state(.5)
 
 def print_table(window, table):
     width, height = table.get_size()
     state = table.get_state()
     for x in range(width):
         for y in range(height):
-            window.addstr(x, y, ALIVE_CHAR if state[y][x] else DEAD_CHAR)
+            window.addstr(y, x, ALIVE_CHAR if state[y][x] else DEAD_CHAR)
             window.refresh()
 
 def draw(window):
@@ -26,4 +27,11 @@ def draw(window):
 
 
 if __name__ == '__main__':
+    if len(sys.argv) == 2:
+        fname = sys.argv[1]
+        with open(fname, 'r') as f:
+            lines = f.readlines()
+        init_state = [[c == '*' for c in line.strip()] for line in lines]
+        table = Table(len(lines[0].strip()), len(lines), init_state)
+
     curses.wrapper(draw)
