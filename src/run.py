@@ -12,6 +12,9 @@ interval_time = .5
 table = Table(80, 10)
 table.generate_random_state(.5)
 
+curses.initscr()
+curses.curs_set(0)
+
 
 def print_table(window, table):
     width, height = table.get_size()
@@ -32,6 +35,7 @@ def parse_arg(name, default=None):
     prefix = '--{}='.format(name)
     arg = list(filter(lambda arg: arg.startswith(prefix), sys.argv[1:]))
     return arg[0][len(prefix):] if arg else default
+
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
